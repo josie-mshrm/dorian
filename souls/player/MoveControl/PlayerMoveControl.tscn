@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://3fxqwd5jml1d"]
+
+[ext_resource type="Script" uid="uid://bl56v72rnj8xn" path="res://souls/player/MoveControl/player_move_control.gd" id="1_oa0hf"]
+[ext_resource type="Script" uid="uid://ssimbulmwra3" path="res://souls/player/MoveControl/idle_state.gd" id="2_cjpdu"]
+[ext_resource type="Script" uid="uid://fjtqf6235p7k" path="res://souls/player/MoveControl/run_state.gd" id="3_i7dk3"]
+
+[node name="PlayerMoveControl" type="LimboHSM"]
+script = ExtResource("1_oa0hf")
+
+[node name="IdleState" type="LimboState" parent="."]
+script = ExtResource("2_cjpdu")
+
+[node name="RunState" type="LimboState" parent="."]
+script = ExtResource("3_i7dk3")

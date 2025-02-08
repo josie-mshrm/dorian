@@ -23,8 +23,8 @@ InputController="*res://util/input_controller.tscn"
 
 [display]
 
-window/size/viewport_width=2560
-window/size/viewport_height=1440
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/vsync/vsync_mode=2
 
 [editor]

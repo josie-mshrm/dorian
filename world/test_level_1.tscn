@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://dt8gmmksles08"]
+[gd_scene load_steps=3 format=3 uid="uid://dt8gmmksles08"]
+
+[ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_rcs33"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54li6"]
+albedo_color = Color(0.118581, 0.118581, 0.118581, 1)
 
 [node name="TestLevel1" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rcs33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12358, 0)
+collision_layer = 16
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_54li6")
+use_collision = true
+collision_mask = 17
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+use_collision = true
+collision_mask = 48
+size = Vector3(128, 1, 128)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.0692516, 0, 0.997599, 0, 1, 0, -0.997599, 0, 0.0692516, 1.13834, 5.82748, -26.4153)
+size = Vector3(1, 10.4495, 20.196)

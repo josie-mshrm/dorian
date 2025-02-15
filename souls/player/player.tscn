@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://txndu54bmkce"]
+[gd_scene load_steps=6 format=3 uid="uid://txndu54bmkce"]
 
 [ext_resource type="Script" uid="uid://ds3rxshyjot23" path="res://souls/player/player.gd" id="1_d51h5"]
+[ext_resource type="PackedScene" uid="uid://d0rlpa3ogaqxv" path="res://souls/player/player_camera.tscn" id="2_bfcdq"]
 [ext_resource type="PackedScene" uid="uid://3fxqwd5jml1d" path="res://souls/player/MoveControl/PlayerMoveControl.tscn" id="2_c3scu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d51h5"]
@@ -18,11 +19,7 @@ shape = SubResource("CapsuleShape3D_d51h5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_c3scu")
 
-[node name="PlayerCamera" type="SpringArm3D" parent="."]
-spring_length = 8.0
-
-[node name="Camera3D" type="Camera3D" parent="PlayerCamera"]
-current = true
-fov = 80.0
+[node name="PlayerCamera" parent="." instance=ExtResource("2_bfcdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="PlayerMoveControl" parent="." instance=ExtResource("2_c3scu")]

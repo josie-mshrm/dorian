@@ -14,7 +14,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# vertical camera rotation
 	rotation.x += camera_input.z * camera_rotation_sensitivity
-	rotation.x = clampf(rotation.x, -rotation_limit_vertical, rotation_limit_vertical)
+	rotation.x = clampf(rotation.x, -rotation_limit_vertical, rotation_limit_vertical * 0.25)
 	
 	# horizontal camera rotation
 	rotation.y += camera_input.x * camera_rotation_sensitivity

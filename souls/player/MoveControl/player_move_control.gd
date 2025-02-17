@@ -2,7 +2,10 @@ class_name PlayerMoveControl
 extends LimboHSM
 
 var target_velocity := Vector3.ZERO
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity : float
+var default_gravity := 98.0
+
+var states : Dictionary[StringName, MoveState] = {}
 
 @onready var idle_state: LimboState = $IdleState
 @onready var run_state: RunState = $RunState
@@ -11,15 +14,26 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	initialize(self)
+	
+	InputController.player_input.connect(on_player_input)
+	
+	get_gravity()
 
 func _setup() -> void:
 	for child in get_children():
 		if child is MoveState:
 			child.soul = player
 			child.control = self
+			
+			var child_name = child.name.trim_suffix("State") as StringName
+			if not states.has(child_name):
+				states[child_name] = child
 	
-	add_transition(idle_state, run_state, &"run")
-	add_transition(run_state, idle_state, &"idle")
+	add_transition(states["Idle"], states["Run"], &"run")
+	add_transition(states["Run"], states["Idle"], &"idle")
+	add_transition(ANYSTATE, states["Jump"], &"jump")
+	add_transition(states["Jump"], states["Idle"], &"idle")
+
 
 func _update(delta: float) -> void:
 	directional_movement(delta)
@@ -37,3 +51,20 @@ func directional_movement(delta: float):
 	player.velocity.z = target_velocity.z
 	
 	player.velocity.y -= gravity * delta
+
+
+func on_player_input(action: Global.Action, _event: InputEvent):
+	match action:
+		Global.Action.JUMP:
+			dispatch(&"jump")
+		Global.Action.DASH:
+			dispatch(&"dash")
+
+func get_gravity():
+	if "Jump" in states:
+		gravity = states["Jump"].fall_gravity
+		print("jump state grav")
+	else:
+		gravity = default_gravity
+	
+	print(gravity)

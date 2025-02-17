@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdsu68cp3p237"]
+
+[ext_resource type="Script" uid="uid://fjtqf6235p7k" path="res://souls/player/MoveControl/run_state.gd" id="1_m455d"]
+
+[node name="RunState" type="LimboState"]
+script = ExtResource("1_m455d")

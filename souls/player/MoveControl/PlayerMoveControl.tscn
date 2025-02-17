@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://3fxqwd5jml1d"]
+[gd_scene load_steps=5 format=3 uid="uid://3fxqwd5jml1d"]
 
 [ext_resource type="Script" uid="uid://bl56v72rnj8xn" path="res://souls/player/MoveControl/player_move_control.gd" id="1_oa0hf"]
-[ext_resource type="Script" uid="uid://ssimbulmwra3" path="res://souls/player/MoveControl/idle_state.gd" id="2_cjpdu"]
-[ext_resource type="Script" uid="uid://fjtqf6235p7k" path="res://souls/player/MoveControl/run_state.gd" id="3_i7dk3"]
+[ext_resource type="PackedScene" uid="uid://k2c0sd3fu8j0" path="res://souls/player/MoveControl/IdleState.tscn" id="2_75oe0"]
+[ext_resource type="PackedScene" uid="uid://bdsu68cp3p237" path="res://souls/player/MoveControl/RunState.tscn" id="3_hxs2w"]
+[ext_resource type="PackedScene" uid="uid://y068fbavx6g2" path="res://souls/player/MoveControl/JumpState.tscn" id="4_75oe0"]
 
 [node name="PlayerMoveControl" type="LimboHSM"]
 script = ExtResource("1_oa0hf")
 
-[node name="IdleState" type="LimboState" parent="."]
-script = ExtResource("2_cjpdu")
+[node name="IdleState" parent="." instance=ExtResource("2_75oe0")]
 
-[node name="RunState" type="LimboState" parent="."]
-script = ExtResource("3_i7dk3")
+[node name="RunState" parent="." instance=ExtResource("3_hxs2w")]
+
+[node name="JumpState" parent="." instance=ExtResource("4_75oe0")]

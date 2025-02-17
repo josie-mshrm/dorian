@@ -12,6 +12,9 @@ height = 1.5
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_d51h5")
+jump_height = 6
+jump_peak_time = 0.45
+jump_fall_time = 0.4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_d51h5")

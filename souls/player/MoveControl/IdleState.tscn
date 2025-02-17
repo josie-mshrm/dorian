@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://k2c0sd3fu8j0"]
+
+[ext_resource type="Script" uid="uid://ssimbulmwra3" path="res://souls/player/MoveControl/idle_state.gd" id="1_l0g5t"]
+
+[node name="IdleState" type="LimboState"]
+script = ExtResource("1_l0g5t")

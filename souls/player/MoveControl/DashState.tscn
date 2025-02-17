@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b62s0a06h8fn4"]
+
+[ext_resource type="Script" uid="uid://clu0umcrj5al" path="res://souls/player/MoveControl/dash_state.gd" id="1_p0hlw"]
+
+[node name="DashState" type="LimboState"]
+script = ExtResource("1_p0hlw")

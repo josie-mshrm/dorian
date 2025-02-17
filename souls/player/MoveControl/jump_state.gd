@@ -11,6 +11,10 @@ func _setup() -> void:
 
 
 func _enter() -> void:
+	jump()
+
+
+func jump():
 	control.gravity = jump_gravity
 	soul.velocity.y += jump_velocity
 	

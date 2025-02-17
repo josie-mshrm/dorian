@@ -1,7 +1,5 @@
 class_name Player
-extends Soul
-
-var speed := 10
+extends DynamicSoul
 
 @onready var player_move_control: PlayerMoveControl = $PlayerMoveControl
 

@@ -29,7 +29,7 @@ func _setup() -> void:
 			if not states.has(child_name):
 				states[child_name] = child
 	
-	add_transition(states["Idle"], states["Run"], &"run")
+	add_transition(ANYSTATE, states["Run"], &"run")
 	add_transition(states["Run"], states["Idle"], &"idle")
 	add_transition(ANYSTATE, states["Jump"], &"jump")
 	add_transition(states["Jump"], states["Idle"], &"idle")
@@ -40,7 +40,6 @@ func _setup() -> void:
 func _update(delta: float) -> void:
 	directional_movement(delta)
 	
-	
 	player.move_and_slide()
 
 
@@ -50,7 +49,7 @@ func directional_movement(delta: float):
 	# use the camera rotation to determine player direction
 	target_velocity = target_velocity.rotated(Vector3.UP, player_camera.rotation.y)
 	
-	# TODO use move_towards() function to add accel
+	
 	player.velocity.x = move_toward(player.velocity.x, target_velocity.x, 2.5)
 	player.velocity.z = move_toward(player.velocity.z, target_velocity.z, 2.5)
 	#player.velocity.x = target_velocity.x

@@ -33,10 +33,13 @@ func _setup() -> void:
 	add_transition(states["Run"], states["Idle"], &"idle")
 	add_transition(ANYSTATE, states["Jump"], &"jump")
 	add_transition(states["Jump"], states["Idle"], &"idle")
+	add_transition(ANYSTATE, states["Dash"], &"dash")
+	add_transition(states["Dash"], states["Idle"], &"idle")
 
 
 func _update(delta: float) -> void:
 	directional_movement(delta)
+	
 	
 	player.move_and_slide()
 
@@ -47,8 +50,11 @@ func directional_movement(delta: float):
 	# use the camera rotation to determine player direction
 	target_velocity = target_velocity.rotated(Vector3.UP, player_camera.rotation.y)
 	
-	player.velocity.x = target_velocity.x
-	player.velocity.z = target_velocity.z
+	# TODO use move_towards() function to add accel
+	player.velocity.x = move_toward(player.velocity.x, target_velocity.x, 2.5)
+	player.velocity.z = move_toward(player.velocity.z, target_velocity.z, 2.5)
+	#player.velocity.x = target_velocity.x
+	#player.velocity.z = target_velocity.z
 	
 	player.velocity.y -= gravity * delta
 
@@ -63,8 +69,5 @@ func on_player_input(action: Global.Action, _event: InputEvent):
 func get_gravity():
 	if "Jump" in states:
 		gravity = states["Jump"].fall_gravity
-		print("jump state grav")
 	else:
 		gravity = default_gravity
-	
-	print(gravity)

@@ -15,3 +15,6 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("jump"):
 		player_input.emit(Global.Action.JUMP, event)
+	
+	if event.is_action("dash"):
+		player_input.emit(Global.Action.DASH, event)

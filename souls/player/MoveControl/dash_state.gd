@@ -30,7 +30,7 @@ func dash():
 		if soul.is_on_floor():
 			dispatch(&"idle")
 		else:
-			dispatch(&"run") # fall state
+			dispatch(&"air") # fall state
 	else:
 		dispatch(&"run")
 

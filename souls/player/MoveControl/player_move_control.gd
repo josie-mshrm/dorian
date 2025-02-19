@@ -32,7 +32,7 @@ func _setup() -> void:
 	add_transition(ANYSTATE, states["Run"], &"run")
 	add_transition(states["Run"], states["Idle"], &"idle")
 	add_transition(ANYSTATE, states["Jump"], &"jump")
-	add_transition(states["Jump"], states["Idle"], &"idle")
+	add_transition(states["Jump"], states["Air"], &"air")
 	add_transition(ANYSTATE, states["Dash"], &"dash")
 	add_transition(states["Dash"], states["Idle"], &"idle")
 
@@ -52,8 +52,6 @@ func directional_movement(delta: float):
 	
 	player.velocity.x = move_toward(player.velocity.x, target_velocity.x, 2.5)
 	player.velocity.z = move_toward(player.velocity.z, target_velocity.z, 2.5)
-	#player.velocity.x = target_velocity.x
-	#player.velocity.z = target_velocity.z
 	
 	player.velocity.y -= gravity * delta
 

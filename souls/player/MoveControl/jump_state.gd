@@ -20,11 +20,8 @@ func jump():
 	
 	await get_tree().create_timer(soul.jump_peak_time).timeout
 	control.gravity = fall_gravity
-
-
-func _update(_delta: float) -> void:
-	if soul.is_on_floor():
-		dispatch(&"idle")
+	
+	dispatch(&"air")
 
 
 func calc_jump_var():

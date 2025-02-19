@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx7a1adxa6gj7"]
+
+[ext_resource type="Script" uid="uid://d3ad2lo1pethd" path="res://souls/player/MoveControl/air_state.gd" id="1_vrh3c"]
+
+[node name="AirState" type="LimboState"]
+script = ExtResource("1_vrh3c")
+metadata/_custom_type_script = "uid://dewgqj0t3w6g1"

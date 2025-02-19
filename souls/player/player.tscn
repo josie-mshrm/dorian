@@ -12,7 +12,7 @@ height = 1.5
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_d51h5")
-dash_distance = 25
+dash_distance = 15
 dash_time = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

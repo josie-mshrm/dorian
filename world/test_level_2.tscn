@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://5kvtplqayp13"]
+
+[ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_gh7g8"]
+[ext_resource type="PackedScene" uid="uid://s7bh8ba14cgw" path="res://world/win_zone.tscn" id="2_w6je5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qaqnu"]
+albedo_color = Color(0.124083, 0.124083, 0.124083, 1)
+
+[node name="TestLevel1" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_gh7g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.71897, 82.7265)
+collision_layer = 16
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+collision_mask = 48
+size = Vector3(256, 1, 256)
+material = SubResource("StandardMaterial3D_qaqnu")
+
+[node name="Win Zone" parent="." instance=ExtResource("2_w6je5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.49218, 14)
+collision_mask = 17
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_mask = 17
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 74)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, 69)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2, 64)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3, 59)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 4, 54)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 5, 49)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 6, 44)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 7, 39)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 8, 34)
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 6, 15.5)
+size = Vector3(14, 1, 10)

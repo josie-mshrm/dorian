@@ -29,13 +29,21 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_62jyu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 12, -31)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 3)
 
 [node name="floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1, -11.5)
 use_collision = true
 collision_mask = 48
-size = Vector3(256, 1, 256)
+size = Vector3(178, 1, 147)
+material = SubResource("StandardMaterial3D_kyxbl")
+metadata/_edit_lock_ = true
+
+[node name="floor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104, 76, -119.5)
+use_collision = true
+collision_mask = 48
+size = Vector3(64, 1, 128)
 material = SubResource("StandardMaterial3D_kyxbl")
 metadata/_edit_lock_ = true
 
@@ -124,7 +132,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -3.5)
 polygon = PackedVector2Array(-2, 0, -2, 2, -1, 1, 1, 0)
 
 [node name="Moving Platform" parent="." instance=ExtResource("2_kyxbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 8, -32)
-size = Vector3i(20, 5, 20)
-target = Vector3i(0, 50, 0)
-wait_time = 5.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 12, -31)
+target = Vector3(0, 0, 50)
+
+[node name="Moving Platform2" parent="." instance=ExtResource("2_kyxbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 10, 19)
+target = Vector3(75, 0, 0)
+
+[node name="Moving Platform3" parent="." instance=ExtResource("2_kyxbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114, 8, 19)
+target = Vector3(-20, 0, -50)
+
+[node name="Moving Platform4" parent="." instance=ExtResource("2_kyxbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 7, -45)
+target = Vector3(0, 75, 0)

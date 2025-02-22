@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh3cy00wkt4fp"]
+[gd_scene load_steps=10 format=3 uid="uid://dh3cy00wkt4fp"]
 
 [ext_resource type="Script" uid="uid://bl88btirb2qej" path="res://world/world objects/moving_platform.gd" id="1_jghdx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y10wl"]
-size = Vector3(20, 5, 20)
+size = Vector3(10, 2.5, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8k1m"]
+albedo_color = Color(0.938416, 0.629969, 0.752501, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jghdx"]
-size = Vector3(20, 5, 20)
+material = SubResource("StandardMaterial3D_f8k1m")
+size = Vector3(10, 2.5, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jghdx"]
 transparency = 1
@@ -14,24 +18,22 @@ albedo_color = Color(1, 0.772549, 0, 0.113725)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gr6is"]
 material = SubResource("StandardMaterial3D_jghdx")
-size = Vector3(5, 1, 5)
+size = Vector3(2.5, 0.625, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jghdx"]
-size = Vector3(5, 1, 5)
+size = Vector3(2.5, 0.625, 2.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr6is"]
 albedo_color = Color(0.0862745, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_f8k1m"]
 material = SubResource("StandardMaterial3D_gr6is")
-size = Vector3(5, 1, 5)
+size = Vector3(2.5, 1, 2.5)
 
 [node name="Moving Platform" type="AnimatableBody3D"]
 script = ExtResource("1_jghdx")
-size = Vector3i(20, 10, 20)
-target = Vector3i(0, 70, 0)
+size = Vector3(10, 2.5, 10)
 trigger_position = 4
-wait_time = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_y10wl")
@@ -40,7 +42,6 @@ shape = SubResource("BoxShape3D_y10wl")
 mesh = SubResource("BoxMesh_jghdx")
 
 [node name="Target" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70, 0)
 mesh = SubResource("BoxMesh_gr6is")
 
 [node name="AreaTrigger" type="Area3D" parent="."]
@@ -48,11 +49,11 @@ collision_mask = 16
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71429, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("BoxShape3D_jghdx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AreaTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71429, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("BoxMesh_f8k1m")
 
 [connection signal="body_entered" from="AreaTrigger" to="." method="_on_area_trigger_body_entered"]

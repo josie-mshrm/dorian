@@ -2,8 +2,8 @@
 class_name MovingPlatform
 extends Platform
 
-@export var size := Vector3i.ZERO
-@export var target := Vector3i.ZERO
+@export var size := Vector3.ZERO
+@export var target := Vector3.ZERO
 @export var trigger_position := Global.CornerPosition.TOP_LEFT
 @export var move_time : float = 3.0
 @export var wait_time : float = 3.0
@@ -46,7 +46,7 @@ func set_platform_size():
 	var area_shape = area_trigger.shape
 	if area_shape is BoxShape3D:
 		area_shape.size = size / 4
-		area_trigger.position.y = size.y / 1.75
+		area_trigger.position.y = size.y / 2
 		
 		area_indicator.position.y = area_trigger.position.y
 		if area_indicator.mesh is BoxMesh:
@@ -71,12 +71,12 @@ func set_platform_size():
 				area_trigger.position.x = 0
 				area_trigger.position.z = 0
 	
+	var target_mesh := target_node.mesh
+	if target_mesh is BoxMesh:
+		target_mesh.size = size / 4
+	target_node.position = target
 	
 	if Engine.is_editor_hint():
-		var target_mesh := target_node.mesh
-		if target_mesh is BoxMesh:
-			target_mesh.size = size / 4
-		target_node.position = target
 		target_node.show()
 	else:
 		target_node.hide()
@@ -85,6 +85,6 @@ func set_platform_size():
 func _on_area_trigger_body_entered(body: Node3D) -> void:
 	if body is Player:
 		move_platform()
-		area_indicator.position.y -= 0.5
+		area_indicator.hide()
 		await get_tree().create_timer(0.5).timeout
-		area_indicator.position.y += 0.5
+		area_indicator.show()

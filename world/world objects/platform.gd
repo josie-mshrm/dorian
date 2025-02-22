@@ -1,0 +1,2 @@
+class_name Platform
+extends AnimatableBody3D

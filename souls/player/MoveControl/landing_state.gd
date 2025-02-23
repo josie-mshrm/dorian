@@ -5,12 +5,10 @@ func _enter() -> void:
 	set_next_state()
 
 func set_next_state():
-	if control.check_action_buffer():
-		var action = control.action_buffer.pop_front()
-		var state : String = Global.Action.find_key(action)
-		state = state.to_lower()
-		var state_name = StringName(state)
-		dispatch(state_name)
+	if control.check_action_buffer(Global.Action.JUMP):
+		var event : InputEvent = control.action_buffer[Global.Action.JUMP]
+		if event.is_pressed():
+			dispatch(&"jump")
 	else:
 		await get_tree().create_timer(soul.landing_time).timeout
 		if InputController.player_movement != Vector3.ZERO:

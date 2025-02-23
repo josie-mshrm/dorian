@@ -59,13 +59,13 @@ func directional_movement(delta: float):
 	player.velocity.y -= gravity * delta
 
 
-func on_player_input(action: Global.Action, _event: InputEvent):
+func on_player_input(action: Global.Action, event: InputEvent):
 	match action:
 		Global.Action.JUMP:
 			if jump_checker():
 				soul.jump_counter += 1
 				dispatch(&"jump")
 			else:
-				buffer_action(action)
+				buffer_action(action, event)
 		Global.Action.DASH:
 			dispatch(&"dash")

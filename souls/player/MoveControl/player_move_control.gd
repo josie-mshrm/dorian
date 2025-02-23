@@ -1,19 +1,14 @@
 class_name PlayerMoveControl
-extends LimboHSM
+extends MoveControl
 
 var target_velocity := Vector3.ZERO
-var gravity : float
-var default_gravity := 98.0
 
-var states : Dictionary[StringName, MoveState] = {}
-
-@onready var idle_state: LimboState = $IdleState
-@onready var run_state: RunState = $RunState
 @onready var player: Player = $".."
 @onready var player_camera: PlayerCamera = $"../PlayerCamera"
 
 func _ready() -> void:
 	initialize(self)
+	soul = player
 	
 	InputController.player_input.connect(on_player_input)
 	
@@ -34,12 +29,17 @@ func _setup() -> void:
 	add_transition(ANYSTATE, states["Jump"], &"jump")
 	add_transition(states["Jump"], states["Air"], &"air")
 	add_transition(ANYSTATE, states["Dash"], &"dash")
-	add_transition(states["Dash"], states["Idle"], &"idle")
+	add_transition(states["Dash"], states["Landing"], &"landing")
+	add_transition(states["Air"], states["Landing"], &"landing")
+	add_transition(states["Landing"], states["Idle"], &"idle")
+	add_transition(states["Landing"], states["Run"], &"run")
 
 
 func _update(delta: float) -> void:
 	directional_movement(delta)
-	ability_reset()
+	
+	if is_grounded():
+		ability_reset()
 	
 	player.move_and_slide()
 
@@ -62,28 +62,7 @@ func on_player_input(action: Global.Action, _event: InputEvent):
 		Global.Action.JUMP:
 			if jump_checker():
 				dispatch(&"jump")
+			else:
+				buffer_action(action)
 		Global.Action.DASH:
 			dispatch(&"dash")
-
-
-func get_gravity():
-	if "Jump" in states:
-		gravity = states["Jump"].fall_gravity
-	else:
-		gravity = default_gravity
-
-
-func jump_checker() -> bool:
-	if player.jump_counter < player.jump_count:
-		player.jump_counter += 1
-		return true
-	return false
-
-
-func ability_reset():
-	if player.is_on_floor():
-		var current_state = get_leaf_state()
-		
-		if current_state == states["Idle"]\
-		or current_state == states["Run"]:
-			player.jump_counter = 0

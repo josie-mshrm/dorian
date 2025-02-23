@@ -26,13 +26,7 @@ func dash():
 	
 	await get_tree().create_timer(soul.dash_time).timeout
 	
-	if InputController.player_movement == Vector3.ZERO:
-		if soul.is_on_floor():
-			dispatch(&"idle")
-		else:
-			dispatch(&"air") # fall state
-	else:
-		dispatch(&"run")
+	dispatch(&"landing")
 
 
 func reset_dash_values():

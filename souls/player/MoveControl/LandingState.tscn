@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5bl6ubyiqyvt"]
+
+[ext_resource type="Script" uid="uid://drx5vj314w2ud" path="res://souls/player/MoveControl/landing_state.gd" id="1_p4isb"]
+
+[node name="LandingState" type="LimboState"]
+script = ExtResource("1_p4isb")

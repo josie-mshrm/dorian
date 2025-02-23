@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3fxqwd5jml1d"]
+[gd_scene load_steps=8 format=3 uid="uid://3fxqwd5jml1d"]
 
 [ext_resource type="Script" uid="uid://bl56v72rnj8xn" path="res://souls/player/MoveControl/player_move_control.gd" id="1_oa0hf"]
 [ext_resource type="PackedScene" uid="uid://k2c0sd3fu8j0" path="res://souls/player/MoveControl/IdleState.tscn" id="2_75oe0"]
@@ -6,16 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://y068fbavx6g2" path="res://souls/player/MoveControl/JumpState.tscn" id="4_75oe0"]
 [ext_resource type="PackedScene" uid="uid://b62s0a06h8fn4" path="res://souls/player/MoveControl/DashState.tscn" id="5_hxs2w"]
 [ext_resource type="PackedScene" uid="uid://cx7a1adxa6gj7" path="res://souls/player/MoveControl/AirState.tscn" id="6_pd8oa"]
+[ext_resource type="PackedScene" uid="uid://b5bl6ubyiqyvt" path="res://souls/player/MoveControl/LandingState.tscn" id="7_ds0sc"]
 
 [node name="PlayerMoveControl" type="LimboHSM"]
 script = ExtResource("1_oa0hf")
 
-[node name="IdleState" parent="." instance=ExtResource("2_75oe0")]
+[node name="IdleState" parent="." groups=["ground"] instance=ExtResource("2_75oe0")]
 
-[node name="RunState" parent="." instance=ExtResource("3_hxs2w")]
+[node name="RunState" parent="." groups=["ground"] instance=ExtResource("3_hxs2w")]
 
-[node name="JumpState" parent="." instance=ExtResource("4_75oe0")]
+[node name="JumpState" parent="." groups=["air"] instance=ExtResource("4_75oe0")]
 
-[node name="DashState" parent="." instance=ExtResource("5_hxs2w")]
+[node name="DashState" parent="." groups=["dash"] instance=ExtResource("5_hxs2w")]
 
-[node name="AirState" parent="." instance=ExtResource("6_pd8oa")]
+[node name="AirState" parent="." groups=["air"] instance=ExtResource("6_pd8oa")]
+
+[node name="LandingState" parent="." groups=["ground"] instance=ExtResource("7_ds0sc")]

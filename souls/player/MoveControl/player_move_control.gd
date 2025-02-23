@@ -35,6 +35,10 @@ func _setup() -> void:
 	add_transition(states["Air"], states["Landing"], &"landing")
 	add_transition(states["Landing"], states["Idle"], &"idle")
 	add_transition(states["Landing"], states["Run"], &"run")
+	
+	add_transition(states["Run"], states["Slide"], &"slide")
+	add_transition(states["Idle"], states["Crouch"], &"crouch")
+	add_transition(states["Slide"], states["Run"], &"run")
 
 
 func _update(delta: float) -> void:
@@ -69,3 +73,5 @@ func on_player_input(action: Global.Action, event: InputEvent):
 				buffer_action(action, event)
 		Global.Action.DASH:
 			dispatch(&"dash")
+		Global.Action.SLIDE:
+			dispatch(&"slide")

@@ -30,7 +30,7 @@ func buffer_action(action: Global.Action, event: InputEvent):
 
 ## Checks the buffer for a specific action type, returns the input event if
 ## that action exists in the buffer
-func check_action_buffer(action: Global.Action):
+func check_action_buffer():
 	if not action_buffer.is_empty():
 		return true
 	return false

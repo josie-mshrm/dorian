@@ -5,7 +5,7 @@ func _enter() -> void:
 	set_next_state()
 
 func set_next_state():
-	if control.check_action_buffer(Global.Action.JUMP):
+	if control.check_action_buffer():
 		var event : InputEvent = control.action_buffer[Global.Action.JUMP]
 		if event.is_pressed():
 			dispatch(&"jump")

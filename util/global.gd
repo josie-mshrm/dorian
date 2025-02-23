@@ -1,4 +1,3 @@
 extends Node
 
-
-enum Action {JUMP, DASH}
+enum Action {JUMP, DASH, SLIDE}

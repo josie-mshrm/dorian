@@ -29,14 +29,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):
 		player_input.emit(Global.Action.DASH, event)
 	
+	if event.is_action_pressed("slide"):
+		player_input.emit(Global.Action.SLIDE, event)
+	
 	if mouse_camera:
 		if event is InputEventMouseMotion:
 			mouse_camera_movement = event.relative
-
-
-func buffer_input(action: Global.Action, event: InputEvent):
-	pass
-	#capture incoming action
-	#store in array for buffer time
-	#remove from array after time
-	#

@@ -14,6 +14,7 @@ func _ready() -> void:
 	
 	get_gravity()
 
+
 func _setup() -> void:
 	for child in get_children():
 		if child is MoveState:
@@ -29,6 +30,7 @@ func _setup() -> void:
 	add_transition(ANYSTATE, states["Jump"], &"jump")
 	add_transition(states["Jump"], states["Air"], &"air")
 	add_transition(ANYSTATE, states["Dash"], &"dash")
+	
 	add_transition(states["Dash"], states["Landing"], &"landing")
 	add_transition(states["Air"], states["Landing"], &"landing")
 	add_transition(states["Landing"], states["Idle"], &"idle")
@@ -61,6 +63,7 @@ func on_player_input(action: Global.Action, _event: InputEvent):
 	match action:
 		Global.Action.JUMP:
 			if jump_checker():
+				soul.jump_counter += 1
 				dispatch(&"jump")
 			else:
 				buffer_action(action)

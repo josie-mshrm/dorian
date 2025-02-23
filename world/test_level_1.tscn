@@ -43,8 +43,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_rcs33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71897, 82.7265)
-print_state = true
-buffer_time = 1.0
 
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

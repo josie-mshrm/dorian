@@ -12,7 +12,6 @@ var action_buffer : Array[Global.Action]
 
 func jump_checker() -> bool:
 	if soul.jump_counter < soul.jump_count:
-		soul.jump_counter += 1
 		return true
 	return false
 

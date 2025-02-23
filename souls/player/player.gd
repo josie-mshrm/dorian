@@ -17,3 +17,4 @@ func on_state_changed(new_state : LimboState, prev_state : LimboState):
 	if print_state:
 		if new_state != prev_state:
 			print(new_state.name)
+			#print("old state is " + prev_state.name)

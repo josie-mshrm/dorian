@@ -12,6 +12,8 @@ extends Soul
 @export var jump_peak_time : float = 0.45
 ## The time for the jump to hit the initial starting position from peak
 @export var jump_fall_time : float = 0.35
+@export var jump_count : int = 1
+var jump_counter : int = 0
 
 @export_group("Dash")
 ## The distance for the dash in meters

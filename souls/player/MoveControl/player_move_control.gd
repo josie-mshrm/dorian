@@ -39,6 +39,7 @@ func _setup() -> void:
 
 func _update(delta: float) -> void:
 	directional_movement(delta)
+	ability_reset()
 	
 	player.move_and_slide()
 
@@ -59,12 +60,30 @@ func directional_movement(delta: float):
 func on_player_input(action: Global.Action, _event: InputEvent):
 	match action:
 		Global.Action.JUMP:
-			dispatch(&"jump")
+			if jump_checker():
+				dispatch(&"jump")
 		Global.Action.DASH:
 			dispatch(&"dash")
+
 
 func get_gravity():
 	if "Jump" in states:
 		gravity = states["Jump"].fall_gravity
 	else:
 		gravity = default_gravity
+
+
+func jump_checker() -> bool:
+	if player.jump_counter < player.jump_count:
+		player.jump_counter += 1
+		return true
+	return false
+
+
+func ability_reset():
+	if player.is_on_floor():
+		var current_state = get_leaf_state()
+		
+		if current_state == states["Idle"]\
+		or current_state == states["Run"]:
+			player.jump_counter = 0

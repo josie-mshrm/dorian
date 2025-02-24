@@ -14,6 +14,7 @@ var area_mesh : BoxMesh
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var target_node: MeshInstance3D = $Target
+@onready var area_base: Area3D = $AreaTrigger
 @onready var area_trigger: CollisionShape3D = $AreaTrigger/CollisionShape3D
 @onready var area_indicator : MeshInstance3D = $AreaTrigger/MeshInstance3D
 
@@ -25,12 +26,14 @@ func _ready() -> void:
 	set_platform_size()
 
 func move_platform():
+	area_base.monitoring = false
 	var tween := create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(self, ^"position", target_node.global_position, move_time)
 	tween.tween_interval(wait_time)
 	tween.tween_property(self, ^"position", init_position, move_time)
-	
+	await tween.finished
+	area_base.monitoring = true
 
 func set_platform_size():
 	init_position = global_position

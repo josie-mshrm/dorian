@@ -63,6 +63,7 @@ func on_player_input(action: Global.Action, _event: InputEvent):
 		Global.Action.DASH:
 			dispatch(&"dash")
 
+
 func get_gravity():
 	if "Jump" in states:
 		gravity = states["Jump"].fall_gravity

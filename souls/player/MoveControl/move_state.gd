@@ -4,4 +4,4 @@ class_name MoveState
 extends LimboState
 
 var soul : DynamicSoul
-var control : LimboHSM
+var control : MoveControl

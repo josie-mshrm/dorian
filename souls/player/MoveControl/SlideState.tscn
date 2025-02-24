@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://esktfcps47i1"]
+
+[ext_resource type="Script" uid="uid://dqfnarv2djg2b" path="res://souls/player/MoveControl/slide_state.gd" id="1_vbjle"]
+
+[node name="SlideState" type="LimboState"]
+script = ExtResource("1_vbjle")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx04nky4hl0py"]
+
+[ext_resource type="Script" uid="uid://jqpilwbj76i1" path="res://souls/player/MoveControl/crouch_state.gd" id="1_5l41u"]
+
+[node name="CrouchState" type="LimboState"]
+script = ExtResource("1_5l41u")

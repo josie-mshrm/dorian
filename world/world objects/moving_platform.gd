@@ -23,6 +23,7 @@ func _enter_tree() -> void:
 	request_ready()
 
 func _ready() -> void:
+	init_position = global_position
 	set_platform_size()
 
 func move_platform():
@@ -36,8 +37,6 @@ func move_platform():
 	set_deferred(&"trigger_area.monitoring", true)
 
 func set_platform_size():
-	init_position = global_position
-	
 	var shape := collision_shape_3d.shape
 	if shape is BoxShape3D:
 		shape.size = size

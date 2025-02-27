@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci1cyf2k5jeu4"]
+
+[ext_resource type="Script" uid="uid://xekqehulqgl1" path="res://world/world objects/world_bound.gd" id="1_klpbp"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qplcf"]
+
+[node name="world bound" type="Area3D"]
+collision_mask = 17
+monitorable = false
+script = ExtResource("1_klpbp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_qplcf")

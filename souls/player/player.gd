@@ -2,11 +2,16 @@ class_name Player
 extends DynamicSoul
 
 
+var last_known_ground : Vector3
+
 @export var print_state : bool = false
 @export var buffer_time : float = 0.5
 
 @onready var player_move_control: PlayerMoveControl = $PlayerMoveControl
 
+func _enter_tree() -> void:
+	if Global.player == null:
+		Global.player == self
 
 func _ready() -> void:
 	# init the movement state machine
@@ -22,3 +27,6 @@ func on_state_changed(new_state : LimboState, prev_state : LimboState):
 		if new_state != prev_state:
 			print(new_state.name)
 			#print("old state is " + prev_state.name)
+
+func respawn():
+	global_position = last_known_ground

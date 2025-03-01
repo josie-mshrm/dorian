@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyauievk1nu3t"]
+[gd_scene load_steps=9 format=3 uid="uid://cyauievk1nu3t"]
 
 [ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_qplcf"]
 [ext_resource type="PackedScene" uid="uid://ci1cyf2k5jeu4" path="res://world/world objects/world_bound.tscn" id="2_nd664"]
 [ext_resource type="PackedScene" uid="uid://b1mg581wlx7bw" path="res://world/world objects/auto_moving_platform.tscn" id="3_yw8hq"]
+[ext_resource type="PackedScene" uid="uid://dh3cy00wkt4fp" path="res://world/world objects/moving_platform.tscn" id="4_kek6a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nd664"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -97,3 +98,8 @@ wait_time = 1.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7, 25, -25)
 size = Vector3(2.5, 0.5, 2.5)
 target = Vector3(0, -10, 0)
+
+[node name="Moving Platform" parent="." instance=ExtResource("4_kek6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -2)
+size = Vector3(5, 1, 5)
+target = Vector3(0, 20, 0)

@@ -10,8 +10,7 @@ var last_known_ground : Vector3
 @onready var player_move_control: PlayerMoveControl = $PlayerMoveControl
 
 func _enter_tree() -> void:
-	if Global.player == null:
-		Global.player == self
+	Global.player = self
 
 func _ready() -> void:
 	# init the movement state machine

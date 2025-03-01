@@ -37,9 +37,13 @@ func _ready() -> void:
 func move_platform():
 	tween = create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	if auto_run:
+		tween.set_loops()
+	
 	tween.tween_property(self, ^"position", target_node.global_position, move_time)
 	tween.tween_interval(wait_time)
 	tween.tween_property(self, ^"position", init_position, move_time)
+	tween.tween_interval(wait_time)
 
 
 func set_platform_size():

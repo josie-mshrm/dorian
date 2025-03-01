@@ -101,5 +101,8 @@ target = Vector3(0, -10, 0)
 
 [node name="Moving Platform" parent="." instance=ExtResource("4_kek6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -2)
+auto_run = true
+trigger_on_area = false
 size = Vector3(5, 1, 5)
 target = Vector3(0, 20, 0)
+wait_time = 2.0

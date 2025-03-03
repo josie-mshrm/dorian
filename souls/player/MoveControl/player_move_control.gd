@@ -6,12 +6,14 @@ var target_velocity := Vector3.ZERO
 @onready var player: Player = $".."
 @onready var player_camera: PlayerCamera = $"../PlayerCamera"
 
+
 func _ready() -> void:
 	initialize(self)
 	soul = player
 	
 	InputController.player_input.connect(on_player_input)
 	
+	set_raycasts()
 	get_gravity()
 
 
@@ -29,6 +31,7 @@ func _setup() -> void:
 	add_transition(states["Run"], states["Idle"], &"idle")
 	add_transition(ANYSTATE, states["Jump"], &"jump")
 	add_transition(states["Jump"], states["Air"], &"air")
+	add_transition(states["Run"], states["Air"], &"air")
 	add_transition(ANYSTATE, states["Dash"], &"dash")
 	
 	add_transition(states["Dash"], states["Landing"], &"landing")
@@ -75,3 +78,11 @@ func on_player_input(action: Global.Action, event: InputEvent):
 			dispatch(&"dash")
 		Global.Action.SLIDE:
 			dispatch(&"slide")
+
+
+func set_raycasts():
+	ray_down = $"../RayDown"
+	ray_left = $"../RayLeft"
+	ray_right = $"../RayRight"
+	ray_forward = $"../RayForward"
+	ray_backward = $"../RayBackward"

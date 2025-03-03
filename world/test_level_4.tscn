@@ -44,7 +44,7 @@ material = SubResource("StandardMaterial3D_kek6a")
 metadata/_edit_lock_ = true
 
 [node name="world bound" parent="." instance=ExtResource("2_nd664")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 metadata/_edit_lock_ = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
@@ -100,7 +100,7 @@ size = Vector3(2.5, 0.5, 2.5)
 target = Vector3(0, -10, 0)
 
 [node name="Moving Platform" parent="." instance=ExtResource("4_kek6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3952, 0, 0)
 auto_run = true
 trigger_on_area = false
 size = Vector3(5, 1, 5)

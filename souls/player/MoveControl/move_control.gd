@@ -9,6 +9,13 @@ var default_gravity := 98.0
 var states : Dictionary[StringName, MoveState] = {}
 var action_buffer : Dictionary[Global.Action, InputEvent]
 
+## Raycasts
+@onready var ray_down: RayCast3D
+@onready var ray_left: RayCast3D
+@onready var ray_right: RayCast3D
+@onready var ray_forward: RayCast3D
+@onready var ray_backward: RayCast3D
+
 
 func jump_checker() -> bool:
 	if soul.jump_counter < soul.jump_count:
@@ -40,9 +47,16 @@ func ability_reset():
 	soul.jump_counter = 0
 
 
+func is_against_wall():
+	if ray_left.is_colliding()\
+	or ray_right.is_colliding()\
+	or ray_forward.is_colliding()\
+	or ray_backward.is_colliding():
+		return true
+	return false
+
+
 func is_grounded() -> bool:
-	if soul.is_on_floor():
-		var current_state = get_leaf_state()
-		if current_state.is_in_group(&"ground"):
-			return true
+	if ray_down.is_colliding():
+		return true
 	return false

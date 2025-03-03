@@ -31,7 +31,7 @@ func _ready() -> void:
 	set_platform_size()
 	if trigger_on_area:
 		create_trigger_area()
-	if auto_run:
+	if auto_run and not Engine.is_editor_hint():
 		move_platform()
 
 func move_platform():

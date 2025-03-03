@@ -7,17 +7,16 @@ var last_known_ground : Vector3
 @export var print_state : bool = false
 @export var buffer_time : float = 0.5
 
-@onready var player_move_control: PlayerMoveControl = $PlayerMoveControl
 
 func _enter_tree() -> void:
 	Global.player = self
 
 func _ready() -> void:
 	# init the movement state machine
-	player_move_control.player = self
-	player_move_control.set_active(true)
+	move_control.player = self
+	move_control.set_active(true)
 	
-	player_move_control.active_state_changed.connect(on_state_changed)
+	move_control.active_state_changed.connect(on_state_changed)
 	
 	set_height()
 

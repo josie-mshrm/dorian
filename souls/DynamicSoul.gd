@@ -6,6 +6,8 @@ extends Soul
 @export var speed := 12
 @export var soul_height : float = 1.5
 
+## Controller
+@export var move_control : MoveControl
 
 @export_group("Jump")
 ## The height of the jump in meters?

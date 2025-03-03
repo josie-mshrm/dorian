@@ -5,6 +5,7 @@ var target_velocity := Vector3.ZERO
 
 @onready var player: Player = $".."
 @onready var player_camera: PlayerCamera = $"../PlayerCamera"
+@onready var rear_marker: Marker3D = $"../RearMarker"
 
 
 func _ready() -> void:

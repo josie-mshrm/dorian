@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://txndu54bmkce"]
+[gd_scene load_steps=8 format=3 uid="uid://txndu54bmkce"]
 
 [ext_resource type="Script" uid="uid://ds3rxshyjot23" path="res://souls/player/player.gd" id="1_d51h5"]
 [ext_resource type="PackedScene" uid="uid://d0rlpa3ogaqxv" path="res://souls/player/player_camera.tscn" id="2_bfcdq"]
@@ -14,6 +14,10 @@ albedo_color = Color(0.647059, 0.603922, 1, 1)
 material = SubResource("StandardMaterial3D_bfcdq")
 height = 1.5
 
+[sub_resource type="PrismMesh" id="PrismMesh_bfcdq"]
+left_to_right = 1.5
+size = Vector3(0.2, 0.2, 0.05)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("move_control")]
 collision_layer = 16
 collision_mask = 3
@@ -28,6 +32,10 @@ shape = SubResource("CapsuleShape3D_d51h5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_c3scu")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 0.994001, 0.10937, 4.78071e-09, 0.10937, -0.994001, -4.34492e-08, 0, 0.3, -0.563058)
+mesh = SubResource("PrismMesh_bfcdq")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("2_bfcdq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -50,3 +58,6 @@ target_position = Vector3(0, 0, -1)
 
 [node name="RayBackward" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, 1)
+
+[node name="RearMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)

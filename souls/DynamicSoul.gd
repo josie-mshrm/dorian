@@ -4,6 +4,8 @@ extends Soul
 
 ## Character movement speed
 @export var speed := 12
+@export var accel_rate := 2.0
+@export var decel_rate := 4.0
 @export var soul_height : float = 1.5
 
 ## Controller

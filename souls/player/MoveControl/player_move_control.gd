@@ -58,18 +58,20 @@ func directional_movement(delta: float):
 	# if the direction is held, accelerate
 	if InputController.player_movement != Vector3.ZERO:
 		target_velocity = InputController.player_movement.normalized()
-		target_velocity *= player.speed
+		target_velocity *= player.speed # player speed is 12
+		# if the input direction changes sign, set the player velocity directly to maximum
+		
 		# use the camera rotation to determine player direction
 		target_velocity = target_velocity.rotated(Vector3.UP, player_camera.rotation.y)
 		
-		player.velocity.x = move_toward(player.velocity.x, target_velocity.x, player.speed * delta)
-		player.velocity.z = move_toward(player.velocity.z, target_velocity.z, player.speed * delta)
+		player.velocity.x = move_toward(player.velocity.x, target_velocity.x, player.speed * player.accel_rate * delta)
+		player.velocity.z = move_toward(player.velocity.z, target_velocity.z, player.speed * player.accel_rate * delta)
 		
 		player.velocity.y -= gravity * delta
 	# if no direction is held, decelerate
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.speed * delta * 4)
-		player.velocity.z = move_toward(player.velocity.z, 0, player.speed * delta * 4)
+		player.velocity.x = move_toward(player.velocity.x, 0, player.speed * player.decel_rate * delta)
+		player.velocity.z = move_toward(player.velocity.z, 0, player.speed * player.decel_rate * delta)
 		
 		player.velocity.y -= gravity * delta
 

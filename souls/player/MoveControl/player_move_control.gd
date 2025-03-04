@@ -55,16 +55,23 @@ func _update(delta: float) -> void:
 
 
 func directional_movement(delta: float):
-	target_velocity = InputController.player_movement.normalized()
-	target_velocity *= player.speed
-	# use the camera rotation to determine player direction
-	target_velocity = target_velocity.rotated(Vector3.UP, player_camera.rotation.y)
-	
-	
-	player.velocity.x = move_toward(player.velocity.x, target_velocity.x, 2.5)
-	player.velocity.z = move_toward(player.velocity.z, target_velocity.z, 2.5)
-	
-	player.velocity.y -= gravity * delta
+	# if the direction is held, accelerate
+	if InputController.player_movement != Vector3.ZERO:
+		target_velocity = InputController.player_movement.normalized()
+		target_velocity *= player.speed
+		# use the camera rotation to determine player direction
+		target_velocity = target_velocity.rotated(Vector3.UP, player_camera.rotation.y)
+		
+		player.velocity.x = move_toward(player.velocity.x, target_velocity.x, player.speed * delta)
+		player.velocity.z = move_toward(player.velocity.z, target_velocity.z, player.speed * delta)
+		
+		player.velocity.y -= gravity * delta
+	# if no direction is held, decelerate
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0, player.speed * delta * 4)
+		player.velocity.z = move_toward(player.velocity.z, 0, player.speed * delta * 4)
+		
+		player.velocity.y -= gravity * delta
 
 
 func on_player_input(action: Global.Action, event: InputEvent):

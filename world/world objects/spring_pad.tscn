@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7lr3l6yyb3t"]
+
+[ext_resource type="Script" uid="uid://btojj68fwluf7" path="res://world/world objects/spring_pad.gd" id="1_job6t"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sdaah"]
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sdaah"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_job6t"]
+albedo_color = Color(0.47, 0.0329, 0.0329, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n8lli"]
+material = SubResource("StandardMaterial3D_job6t")
+height = 0.2
+
+[node name="SpringPad" type="Area3D"]
+collision_mask = 48
+monitorable = false
+script = ExtResource("1_job6t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_sdaah")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sdaah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_n8lli")
+
+[node name="UpLaunch" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

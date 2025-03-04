@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyauievk1nu3t"]
+[gd_scene load_steps=12 format=3 uid="uid://cyauievk1nu3t"]
 
 [ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_qplcf"]
 [ext_resource type="PackedScene" uid="uid://ci1cyf2k5jeu4" path="res://world/world objects/world_bound.tscn" id="2_nd664"]
 [ext_resource type="PackedScene" uid="uid://b1mg581wlx7bw" path="res://world/world objects/auto_moving_platform.tscn" id="3_yw8hq"]
 [ext_resource type="PackedScene" uid="uid://dh3cy00wkt4fp" path="res://world/world objects/moving_platform.tscn" id="4_kek6a"]
+[ext_resource type="PackedScene" uid="uid://c7lr3l6yyb3t" path="res://world/world objects/spring_pad.tscn" id="5_petug"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nd664"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -225,3 +226,9 @@ size = Vector3(7, 5, 19)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
 size = Vector3(10, 5, 21)
+
+[node name="SpringPad" parent="." instance=ExtResource("5_petug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, -1.5, -2.4)
+
+[node name="SpringPad2" parent="." instance=ExtResource("5_petug")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 64.5, -1, -2.4)

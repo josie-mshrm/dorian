@@ -40,6 +40,9 @@ mesh = SubResource("PrismMesh_bfcdq")
 [node name="PlayerCamera" parent="." instance=ExtResource("2_bfcdq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
+[node name="SpringArm" parent="PlayerCamera" index="0"]
+spring_length = 12.0
+
 [node name="PlayerMoveControl" parent="." instance=ExtResource("2_c3scu")]
 
 [node name="RayDown" type="RayCast3D" parent="."]
@@ -61,3 +64,5 @@ target_position = Vector3(0, 0, 1)
 
 [node name="RearMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+
+[editable path="PlayerCamera"]

@@ -8,6 +8,8 @@ var player_movement := Vector3.ZERO
 var camera_movement := Vector3.ZERO
 var mouse_camera_movement := Vector2.ZERO
 
+var layer := 0
+
 
 func _ready() -> void:
 	if mouse_camera:
@@ -20,6 +22,11 @@ func _physics_process(_delta: float) -> void:
 	
 	camera_movement.x = Input.get_axis("cam - right", "cam - left")
 	camera_movement.z = Input.get_axis("cam - down", "cam - up")
+	
+	if Input.is_action_pressed(&"layer_toggle"):
+		layer = 1
+	else:
+		layer = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,10 +34,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		player_input.emit(Global.Action.JUMP, event)
 	
 	if event.is_action_pressed("dash"):
-		player_input.emit(Global.Action.DASH, event)
+		match layer:
+			0 : player_input.emit(Global.Action.DASH, event)
+			1 : player_input.emit(Global.Action.SLIDE, event)
 	
-	if event.is_action_pressed("slide"):
-		player_input.emit(Global.Action.SLIDE, event)
+	#if event.is_action_pressed("slide"):
+		#player_input.emit(Global.Action.SLIDE, event)
 	
 	if mouse_camera:
 		if event is InputEventMouseMotion:

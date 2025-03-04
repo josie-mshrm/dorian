@@ -54,7 +54,7 @@ func set_platform_size():
 		mesh.mesh.size = size
 	
 	if target_node.mesh is BoxMesh:
-		target_node.mesh.size = size / 4
+		target_node.mesh.size = size
 	target_node.position = target
 	
 	if Engine.is_editor_hint():

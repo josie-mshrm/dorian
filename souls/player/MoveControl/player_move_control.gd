@@ -42,6 +42,7 @@ func _setup() -> void:
 	
 	add_transition(states["Run"], states["Slide"], &"slide")
 	add_transition(states["Idle"], states["Crouch"], &"crouch")
+	add_transition(states["Crouch"], states["Idle"], &"idle")
 	add_transition(states["Slide"], states["Run"], &"run")
 
 
@@ -87,7 +88,11 @@ func on_player_input(action: Global.Action, event: InputEvent):
 		Global.Action.DASH:
 			dispatch(&"dash")
 		Global.Action.SLIDE:
-			dispatch(&"slide")
+			var current_state = get_leaf_state()
+			if current_state == states[&"Run"]:
+				dispatch(&"slide")
+			elif current_state == states[&"Idle"]:
+				dispatch(&"crouch")
 
 
 func set_raycasts():

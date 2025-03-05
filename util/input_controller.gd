@@ -12,6 +12,8 @@ var layer := 0
 
 
 func _ready() -> void:
+	player_input.connect(on_player_input)
+	
 	if mouse_camera:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -38,9 +40,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			0 : player_input.emit(Global.Action.DASH, event)
 			1 : player_input.emit(Global.Action.SLIDE, event)
 	
-	#if event.is_action_pressed("slide"):
-		#player_input.emit(Global.Action.SLIDE, event)
-	
 	if mouse_camera:
 		if event is InputEventMouseMotion:
 			mouse_camera_movement = event.relative
+
+
+func on_player_input(_action: Global.Action, _event: InputEvent):
+	pass

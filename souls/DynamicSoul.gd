@@ -31,9 +31,9 @@ var jump_counter : int = 0
 @export_group("Slide")
 @export var slide_time := 0.5
 
-
-@onready var collision_shape: CapsuleShape3D = $CollisionShape3D.shape
-@onready var mesh: CapsuleMesh = $MeshInstance3D.mesh
+@export_group("")
+@export var collision_shape: CapsuleShape3D
+@export var mesh: CapsuleMesh
 
 
 func set_height():

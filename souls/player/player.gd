@@ -8,6 +8,10 @@ var last_known_ground : Vector3
 @export var buffer_time : float = 0.5
 
 
+@onready var player_camera: PlayerCamera = $PlayerCamera
+@onready var player_mesh: MeshInstance3D = $PlayerMesh
+
+
 func _enter_tree() -> void:
 	Global.player = self
 
@@ -28,3 +32,16 @@ func on_state_changed(new_state : LimboState, prev_state : LimboState):
 
 func respawn():
 	global_position = last_known_ground
+
+
+func _process(_delta: float) -> void:
+	rotate_player()
+
+
+func rotate_player():
+	if InputController.player_movement != Vector3.ZERO:
+		var target_rotation := InputController.player_movement.normalized()
+		target_rotation = target_rotation.rotated(Vector3.UP, player_camera.rotation.y)
+		var target_quat = Quaternion(Vector3.FORWARD, target_rotation)
+		
+		player_mesh.quaternion = target_quat

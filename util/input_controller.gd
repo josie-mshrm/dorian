@@ -2,7 +2,7 @@ extends Node
 
 signal player_input(action: Global.Action, event: InputEvent)
 
-@export var mouse_camera := true
+@export var mouse_camera := false
 
 var player_movement := Vector3.ZERO
 var camera_movement := Vector3.ZERO

@@ -1,7 +1,8 @@
 class_name DashState
 extends MoveState
 
-var dash_velocity : Vector3
+var dash_velocity : float
+var dash_vector : Vector3
 var init_velocity : Vector3
 var dash_delta : float
 
@@ -21,8 +22,9 @@ func _exit() -> void:
 
 
 func dash():
-	dash_velocity = dash_velocity.rotated(Vector3.UP, control.player_camera.rotation.y)
-	soul.velocity += dash_velocity
+	dash_vector = InputController.player_movement.normalized() * dash_velocity
+	dash_vector = dash_vector.rotated(Vector3.UP, control.player_camera.rotation.y)
+	soul.velocity += dash_vector
 	
 	await get_tree().create_timer(soul.dash_time).timeout
 	
@@ -30,6 +32,5 @@ func dash():
 
 
 func reset_dash_values():
-	dash_velocity.z = (soul.dash_distance / soul.dash_time) * -1
-	dash_velocity.x = 0
-	dash_velocity.y = 0
+	dash_velocity = (soul.dash_distance / soul.dash_time)
+	dash_vector = Vector3.ZERO

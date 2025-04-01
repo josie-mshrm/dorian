@@ -40,7 +40,6 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_qplcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0)
-print_state = false
 
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -2, -131.5)

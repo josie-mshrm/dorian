@@ -32,14 +32,15 @@ func jump():
 	await get_tree()\
 	.create_timer(soul.jump_peak_time, false, true, true).timeout
 	
+	
 	dispatch(&"fall")
+	# TODO make double jump not double dispatch fall
 
 
-func on_jump_release(action: Global.Action, event: InputEvent):
-	if self.is_active():
+func on_jump_release(action: Global.Action, _event: InputEvent):
+	if is_active():
 		if action == Global.Action.JUMP:
-			if event.is_action("jump"):
-				dispatch(&"fall")
+			dispatch(&"fall")
 
 
 func calc_jump_var():

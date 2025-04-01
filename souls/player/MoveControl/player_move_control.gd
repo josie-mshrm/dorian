@@ -31,7 +31,7 @@ func _setup() -> void:
 	add_transition(ANYSTATE, states["Run"], &"run")
 	add_transition(states["Run"], states["Idle"], &"idle")
 	add_transition(ANYSTATE, states["Jump"], &"jump")
-	add_transition(states["Jump"], states["Air"], &"air")
+	add_transition(states["Jump"], states["Air"], &"fall")
 	add_transition(states["Run"], states["Air"], &"air")
 	add_transition(ANYSTATE, states["Dash"], &"dash")
 	

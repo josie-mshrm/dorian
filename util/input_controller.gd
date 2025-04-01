@@ -1,6 +1,7 @@
 extends Node
 
 signal player_input(action: Global.Action, event: InputEvent)
+signal player_release(action: Global.Action, event: InputEvent)
 
 @export var mouse_camera := false
 
@@ -34,6 +35,9 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		player_input.emit(Global.Action.JUMP, event)
+		
+	if event.is_action_released("jump"):
+		player_release.emit(Global.Action.JUMP, event)
 	
 	if event.is_action_pressed("dash"):
 		match layer:

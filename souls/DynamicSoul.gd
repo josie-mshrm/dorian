@@ -20,6 +20,7 @@ extends Soul
 @export var jump_fall_time : float = 0.35
 @export var jump_count : int = 1
 var jump_counter : int = 0
+@export var minimum_jump_time : float = 0.1
 @export var landing_time : float = 0.15
 
 @export_group("Dash")

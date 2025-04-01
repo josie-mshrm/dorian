@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://chyanhb1y7mdr" path="res://souls/player/player_camera.gd" id="1_18v4s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_18v4s"]
-radius = 1.5
+radius = 1.0
 
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_18v4s")
 
 [node name="SpringArm" type="SpringArm3D" parent="."]
 shape = SubResource("SphereShape3D_18v4s")
-spring_length = 8.0
+spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm"]
 current = true

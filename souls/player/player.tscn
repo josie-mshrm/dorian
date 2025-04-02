@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://txndu54bmkce"]
+[gd_scene load_steps=8 format=3 uid="uid://txndu54bmkce"]
 
 [ext_resource type="Script" uid="uid://ds3rxshyjot23" path="res://souls/player/player.gd" id="1_d51h5"]
 [ext_resource type="PackedScene" uid="uid://d0rlpa3ogaqxv" path="res://souls/player/player_camera.tscn" id="2_bfcdq"]
 [ext_resource type="PackedScene" uid="uid://3fxqwd5jml1d" path="res://souls/player/MoveControl/PlayerMoveControl.tscn" id="2_c3scu"]
 [ext_resource type="Shape3D" uid="uid://buycpnei6amuc" path="res://souls/player/player_collision_shape.tres" id="2_dmuwf"]
 [ext_resource type="CapsuleMesh" uid="uid://c4f3dqwxcx1wq" path="res://souls/player/player_mesh.tres" id="3_3fqy6"]
+[ext_resource type="PackedScene" uid="uid://ipnst2h6kr1v" path="res://util/hud.tscn" id="6_3fqy6"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_bfcdq"]
 left_to_right = 1.5
@@ -41,19 +42,27 @@ skeleton = NodePath("../..")
 
 [node name="RayDown" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 target_position = Vector3(0, -0.5, 0)
 hit_from_inside = true
 
 [node name="RayLeft" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(-1, 0, 0)
 
 [node name="RayRight" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(1, 0, 0)
 
 [node name="RayForward" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(0, 0, -1)
 
 [node name="RayBackward" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(0, 0, 1)
+
+[node name="HUD" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("6_3fqy6")]
+parent = NodePath("..")
 
 [editable path="PlayerCamera"]

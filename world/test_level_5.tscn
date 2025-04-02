@@ -29,7 +29,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_tm7o6")]
-print_state = true
 
 [node name="world bound" parent="." instance=ExtResource("2_tm7o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
@@ -89,3 +88,18 @@ collision_mask = 0
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -11)
 size = Vector3(15, 10, 15)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -61)
+size = Vector3(15, 10, 15)
+
+[node name="Moving Platform2" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -99)
+target = Vector3(0, 0, -14)
+
+[node name="Moving Platform3" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -127)
+target = Vector3(0, 0, 14)
+
+[node name="PlayerSpawnLocation" parent="." instance=ExtResource("3_n0xy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -138)

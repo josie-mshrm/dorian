@@ -31,6 +31,7 @@ func on_state_changed(new_state : LimboState, prev_state : LimboState):
 			#print("old state is " + prev_state.name)
 
 func respawn():
+	health -= 10
 	global_position = respawn_point
 
 

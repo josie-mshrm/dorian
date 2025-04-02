@@ -27,14 +27,13 @@ func _exit() -> void:
 
 func jump():
 	control.gravity = jump_gravity
-	soul.velocity.y += jump_velocity
+	soul.velocity.y = jump_velocity
 	
 	await get_tree()\
 	.create_timer(soul.jump_peak_time, false, true, true).timeout
 	
-	
-	dispatch(&"fall")
-	# TODO make double jump not double dispatch fall
+	if is_active():
+		dispatch(&"fall")
 
 
 func on_jump_release(action: Global.Action, _event: InputEvent):

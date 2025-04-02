@@ -2,7 +2,7 @@ class_name Player
 extends DynamicSoul
 
 
-var last_known_ground : Vector3
+var respawn_point : Vector3
 
 @export var print_state : bool = false
 @export var buffer_time : float = 0.5
@@ -31,7 +31,7 @@ func on_state_changed(new_state : LimboState, prev_state : LimboState):
 			#print("old state is " + prev_state.name)
 
 func respawn():
-	global_position = last_known_ground
+	global_position = respawn_point
 
 
 func _process(_delta: float) -> void:

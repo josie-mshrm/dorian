@@ -14,11 +14,12 @@ size = Vector3(0.2, 0.2, 0.05)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_d51h5")
+buffer_time = 0.2
 accel_rate = 4.0
-decel_rate = 3.2
 move_control = NodePath("PlayerMoveControl")
+jump_height = 2.8
 jump_fall_time = 0.32
-dash_distance = 10
+dash_distance = 6
 dash_time = 0.2
 collision_shape = ExtResource("2_dmuwf")
 mesh = ExtResource("3_3fqy6")
@@ -54,8 +55,5 @@ target_position = Vector3(0, 0, -1)
 
 [node name="RayBackward" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, 1)
-
-[node name="RearMarker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 
 [editable path="PlayerCamera"]

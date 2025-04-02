@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://beklk2kj1u71f"]
+
+[ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_tm7o6"]
+[ext_resource type="PackedScene" uid="uid://ci1cyf2k5jeu4" path="res://world/world objects/world_bound.tscn" id="2_tm7o6"]
+[ext_resource type="Material" uid="uid://dhmvoo0xhh3wo" path="res://world/Basic Materials/wine.tres" id="3_hyqni"]
+[ext_resource type="PackedScene" uid="uid://d3sobxjpnt1vo" path="res://world/world objects/player_spawn_location.tscn" id="3_n0xy8"]
+[ext_resource type="PackedScene" uid="uid://dh3cy00wkt4fp" path="res://world/world objects/moving_platform.tscn" id="5_3tdrx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_54li6"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_qaqnu"]
+sky_material = SubResource("ProceduralSkyMaterial_54li6")
+
+[sub_resource type="Environment" id="Environment_4wenl"]
+background_mode = 2
+sky = SubResource("Sky_qaqnu")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TestLevel5" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4wenl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_tm7o6")]
+print_state = true
+
+[node name="world bound" parent="." instance=ExtResource("2_tm7o6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+visible = false
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("3_hyqni")
+use_collision = true
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -1.5)
+size = Vector3(15, 1, 15)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -51.5)
+size = Vector3(15, 1, 15)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, -53.5)
+size = Vector3(5, 5, 11)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -53.5)
+size = Vector3(5, 5, 11)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -58)
+size = Vector3(5, 2, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -16.5)
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.5)
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -36.5)
+size = Vector3(5, 1, 5)
+
+[node name="CP1" parent="." instance=ExtResource("3_n0xy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -46.5)
+
+[node name="Moving Platform" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -62)
+target = Vector3(0, 0, -15)
+move_time = 2.0
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -77)
+material_override = ExtResource("3_hyqni")
+use_collision = true
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -11)
+size = Vector3(15, 10, 15)

@@ -23,6 +23,8 @@ func _exit() -> void:
 
 func dash():
 	dash_vector = InputController.player_movement.normalized() * dash_velocity
+	if dash_vector == Vector3.ZERO:
+		dash_vector = Vector3.FORWARD * dash_velocity
 	dash_vector = dash_vector.rotated(Vector3.UP, control.player_camera.rotation.y)
 	soul.velocity += dash_vector
 	

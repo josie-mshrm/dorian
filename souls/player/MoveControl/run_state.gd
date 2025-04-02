@@ -10,5 +10,4 @@ func _update(_delta: float) -> void:
 		dispatch(&"air")
 
 func _exit() -> void:
-	if soul is Player:
-		soul.last_known_ground = control.rear_marker.global_position
+	pass

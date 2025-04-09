@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b22yoxrgf2u1o"]
+
+[ext_resource type="Script" uid="uid://cutjkist1wfag" path="res://world/world objects/platform.gd" id="1_rv5cf"]
+
+[node name="Platform" type="AnimatableBody3D"]
+script = ExtResource("1_rv5cf")
+metadata/_custom_type_script = "uid://cutjkist1wfag"

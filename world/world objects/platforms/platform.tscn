@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b22yoxrgf2u1o"]
+
+[ext_resource type="Script" uid="uid://cutjkist1wfag" path="res://world/world objects/platforms/platform.gd" id="1_rv5cf"]
+[ext_resource type="Material" uid="uid://dqaxsw8bk4csh" path="res://world/Basic Materials/periwinkle.tres" id="3_f8to8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f8to8"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dl7kt"]
+material = ExtResource("3_f8to8")
+size = Vector3(5, 0.5, 5)
+
+[node name="Platform" type="AnimatableBody3D"]
+script = ExtResource("1_rv5cf")
+size = Vector3(5, 0.5, 5)
+type = 1
+metadata/_custom_type_script = "uid://cutjkist1wfag"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_f8to8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dl7kt")
+
+[connection signal="VariableChanged" from="." to="." method="on_stats_changed"]

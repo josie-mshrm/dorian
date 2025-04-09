@@ -4,14 +4,9 @@ extends Platform
 
 @export var auto_run := false
 @export var trigger_on_area := false
-@export var size := Vector3.ZERO
 @export var target := Vector3.ZERO
 @export var trigger_position := Global.CornerPosition.TOP_LEFT
-@export var move_time : float = 3.0
-@export var wait_time : float = 3.0
 
-var init_position : Vector3
-var tween : Tween = null
 var trigger: Area3D = null
 var trigger_collision: CollisionShape3D
 var trigger_mesh : MeshInstance3D

@@ -37,6 +37,10 @@ func _ready() -> void:
 	if not VariableChanged.is_connected(on_stats_changed):
 		VariableChanged.connect(on_stats_changed)
 	
+	if not Engine.is_editor_hint():
+		init_position = self.global_position
+		target_position = init_position + target_position
+	
 	match type:
 		PlatformType.STATIC:
 			pass
@@ -48,33 +52,34 @@ func _ready() -> void:
 			pass
 		PlatformType.ROTATING:
 			pass
-	
-	match trigger_type:
-		TriggerType.AUTO:
-			pass
-		TriggerType.BUTTON:
-			pass
-		TriggerType.CONTACT:
-			pass
-		TriggerType.SWITCH:
-			pass
+	if not Engine.is_editor_hint():
+		match trigger_type:
+			TriggerType.AUTO:
+				move_platform()
+			TriggerType.BUTTON:
+				pass
+			TriggerType.CONTACT:
+				pass
+			TriggerType.SWITCH:
+				pass
 
 func move_platform():
 	tween = create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	if type == TriggerType.AUTO:
+	if trigger_type == TriggerType.AUTO:
 		tween.set_loops()
 	
-	tween.tween_property(self, ^"position", target_position, move_time)
+	tween.tween_property(self, ^"global_position", target_position, move_time)
 	tween.tween_interval(wait_time)
-	tween.tween_property(self, ^"position", init_position, move_time)
+	tween.tween_property(self, ^"global_position", init_position, move_time)
 	tween.tween_interval(wait_time)
 
 func on_stats_changed():
 	update_shape()
 
 func update_shape():
-	box_shape.size = size
+	if box_shape:
+		box_shape.size = size
 	if target_position != Vector3.ZERO and type == PlatformType.MOVING:
 		if indicator_mesh and Engine.is_editor_hint():
 			indicator_mesh.position = target_position

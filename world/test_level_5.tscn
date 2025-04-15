@@ -104,3 +104,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 [node name="Platform" parent="." instance=ExtResource("5_3tdrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, -61.8)
 target_position = Vector3(0, 0, -16)
+wait_time = 1.4
+
+[node name="Platform2" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.2, -98)
+target_position = Vector3(0, 0, -15)
+wait_time = 1.4
+
+[node name="Platform3" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.2, -128)
+target_position = Vector3(0, 0, 15)
+wait_time = 1.4
+
+[node name="Platform4" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4.2, -138)
+target_position = Vector3(18, 0, 0)
+wait_time = 1.4
+
+[node name="Platform5" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 4, -134)
+target_position = Vector3(5, 0, 0)
+wait_time = 0.2
+move_time = 1.0
+
+[node name="Platform6" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 4, -139)
+target_position = Vector3(-5, 0, 0)
+wait_time = 0.2
+move_time = 1.0
+
+[node name="Platform7" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 4, -144)
+target_position = Vector3(0, 6, 0)
+wait_time = 0.2
+move_time = 1.0
+
+[node name="Platform8" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 16, -149)
+target_position = Vector3(0, -6, 0)
+wait_time = 2.0
+move_time = 1.0
+
+[node name="Platform9" parent="." instance=ExtResource("5_3tdrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 16, -157)
+size = Vector3(10, 0.5, 10)
+target_position = Vector3(-80, 0, 0)
+wait_time = 0.0
+move_time = 9.0

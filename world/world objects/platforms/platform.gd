@@ -25,13 +25,14 @@ enum TriggerType {AUTO, BUTTON, CONTACT, SWITCH}
 @export var trigger_type : TriggerType
 
 var indicator_mesh : MeshInstance3D
-var box_mesh : BoxMesh
+var indicator_box_mesh : BoxMesh
 var tween : Tween
 var init_position : Vector3
 
-@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@export var collision_shape_3d: CollisionShape3D
 @onready var box_shape : BoxShape3D = $CollisionShape3D.shape
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@export var mesh_instance_3d: MeshInstance3D
+@onready var box_mesh : BoxMesh = $MeshInstance3D.mesh
 
 func _ready() -> void:
 	if not VariableChanged.is_connected(on_stats_changed):
@@ -40,6 +41,8 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		init_position = self.global_position
 		target_position = init_position + target_position
+	
+	update_shape()
 	
 	match type:
 		PlatformType.STATIC:
@@ -78,25 +81,33 @@ func on_stats_changed():
 	update_shape()
 
 func update_shape():
-	if box_shape:
-		box_shape.size = size
+	# Update the Collision Shape size
+	box_shape.size = size
+	# Update the mesh instance size
+	box_mesh.size = size
+	
+	# If the target position is set, and the platform should be moving
 	if target_position != Vector3.ZERO and type == PlatformType.MOVING:
-		if indicator_mesh and Engine.is_editor_hint():
+		# While in the editor
+		# If the indicator_mesh doesn't exist, create it
+		if Engine.is_editor_hint():
+			if not indicator_mesh:
+				make_target_indicator()
+			# then set it's position and size
 			indicator_mesh.position = target_position
-			box_mesh.size = size
-		elif not indicator_mesh and Engine.is_editor_hint():
-			make_target_indicator()
-		elif indicator_mesh and not Engine.is_editor_hint():
-			indicator_mesh.queue_free()
-	elif target_position == Vector3.ZERO and indicator_mesh:
-		indicator_mesh.queue_free()
+			indicator_box_mesh.size = size
+		# If not in the editor
+		else:
+			# Get rid of the indicator
+			if indicator_mesh:
+				indicator_mesh.queue_free()
 
 func make_target_indicator():
 	if target_position != Vector3.ZERO:
 		indicator_mesh = MeshInstance3D.new()
-		box_mesh = BoxMesh.new()
-		box_mesh.material = load("res://world/Basic Materials/indicator_material.tres")
-		indicator_mesh.mesh = box_mesh
+		indicator_box_mesh = BoxMesh.new()
+		indicator_box_mesh.material = load("res://world/Basic Materials/indicator_material.tres")
+		indicator_mesh.mesh = indicator_box_mesh
 		add_child(indicator_mesh)
 		update_shape()
 
@@ -104,3 +115,5 @@ func make_target_indicator():
 func _exit_tree() -> void:
 	if indicator_mesh:
 		indicator_mesh.queue_free()
+	if VariableChanged.is_connected(on_stats_changed):
+		VariableChanged.disconnect(on_stats_changed)

@@ -4,3 +4,4 @@
 
 [node name="InputController" type="Node"]
 script = ExtResource("1_1sgjk")
+mouse_camera = true

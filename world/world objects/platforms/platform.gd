@@ -63,6 +63,8 @@ func _ready() -> void:
 				pass
 			TriggerType.CONTACT:
 				pass
+				# How will the platform know if something touches it? Create an area
+				# above and use that as a trigger
 			TriggerType.SWITCH:
 				pass
 

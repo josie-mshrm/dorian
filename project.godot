@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="dorian"
-run/main_scene="uid://5sivvhumnyxk"
+run/main_scene="uid://beklk2kj1u71f"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://addons/icon.svg"
 

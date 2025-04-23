@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4mtg2x7gp22x"]
+
+[ext_resource type="Script" uid="uid://pywccewgw5ni" path="res://world/world objects/platforms/moving_platform.gd" id="1_sa2f3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi635"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8bxr"]
+
+[sub_resource type="Curve3D" id="Curve3D_jpgmk"]
+resource_local_to_scene = true
+
+[node name="MovingPlatform" type="AnimatableBody3D" node_paths=PackedStringArray("collision_node", "mesh_node")]
+script = ExtResource("1_sa2f3")
+collision_node = NodePath("CollisionShape3D")
+mesh_node = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mi635")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_s8bxr")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_jpgmk")

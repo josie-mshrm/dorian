@@ -1,5 +1,5 @@
 @tool
-class_name Platform
+class_name Platform_v1
 extends AnimatableBody3D
 
 signal VariableChanged
@@ -44,29 +44,10 @@ func _ready() -> void:
 	
 	update_shape()
 	
-	match type:
-		PlatformType.STATIC:
-			pass
-		PlatformType.MOVING:
-			pass
-		PlatformType.DISAPPEARING:
-			pass
-		PlatformType.FALLING:
-			pass
-		PlatformType.ROTATING:
-			pass
 	if not Engine.is_editor_hint():
 		match trigger_type:
 			TriggerType.AUTO:
 				move_platform()
-			TriggerType.BUTTON:
-				pass
-			TriggerType.CONTACT:
-				pass
-				# How will the platform know if something touches it? Create an area
-				# above and use that as a trigger
-			TriggerType.SWITCH:
-				pass
 
 func move_platform():
 	tween = create_tween()
@@ -88,30 +69,33 @@ func update_shape():
 	# Update the mesh instance size
 	box_mesh.size = size
 	
-	# If the target position is set, and the platform should be moving
-	if target_position != Vector3.ZERO and type == PlatformType.MOVING:
-		# While in the editor
+	# While in the editor
+	if Engine.is_editor_hint():
 		# If the indicator_mesh doesn't exist, create it
-		if Engine.is_editor_hint():
-			if not indicator_mesh:
-				make_target_indicator()
-			# then set it's position and size
+		if indicator_mesh:
 			indicator_mesh.position = target_position
 			indicator_box_mesh.size = size
-		# If not in the editor
 		else:
-			# Get rid of the indicator
-			if indicator_mesh:
-				indicator_mesh.queue_free()
+			make_target_indicator()
+	# If not in the editor
+	else:
+		# Get rid of the indicator
+		if indicator_mesh:
+			indicator_mesh.queue_free()
 
 func make_target_indicator():
-	if target_position != Vector3.ZERO:
-		indicator_mesh = MeshInstance3D.new()
-		indicator_box_mesh = BoxMesh.new()
-		indicator_box_mesh.material = load("res://world/Basic Materials/indicator_material.tres")
-		indicator_mesh.mesh = indicator_box_mesh
-		add_child(indicator_mesh)
-		update_shape()
+	indicator_mesh = MeshInstance3D.new()
+	indicator_box_mesh = BoxMesh.new()
+	indicator_box_mesh.material = load("res://world/Basic Materials/indicator_material.tres")
+	indicator_mesh.mesh = indicator_box_mesh
+	add_child(indicator_mesh)
+	update_shape()
+
+
+func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		if not indicator_mesh:
+			make_target_indicator()
 
 
 func _exit_tree() -> void:

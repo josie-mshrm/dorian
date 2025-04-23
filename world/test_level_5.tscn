@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://beklk2kj1u71f"]
+[gd_scene load_steps=13 format=3 uid="uid://beklk2kj1u71f"]
 
 [ext_resource type="PackedScene" uid="uid://txndu54bmkce" path="res://souls/player/player.tscn" id="1_tm7o6"]
 [ext_resource type="PackedScene" uid="uid://ci1cyf2k5jeu4" path="res://world/world objects/world_bound.tscn" id="2_tm7o6"]
 [ext_resource type="Material" uid="uid://dhmvoo0xhh3wo" path="res://world/Basic Materials/wine.tres" id="3_hyqni"]
 [ext_resource type="PackedScene" uid="uid://d3sobxjpnt1vo" path="res://world/world objects/player_spawn_location.tscn" id="3_n0xy8"]
 [ext_resource type="PackedScene" uid="uid://b22yoxrgf2u1o" path="res://world/world objects/platforms/platform.tscn" id="5_3tdrx"]
+[ext_resource type="Script" uid="uid://0sqjhck2r2mq" path="res://world/area_enter_platform.gd" id="6_r5l0s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_54li6"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,6 +20,15 @@ sky = SubResource("Sky_qaqnu")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3tdrx"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r5l0s"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mokhy"]
+size = Vector3(5, 0.2, 5)
+
 [node name="TestLevel5" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -29,6 +39,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_tm7o6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 6, -138)
 
 [node name="world bound" parent="." instance=ExtResource("2_tm7o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
@@ -139,12 +150,30 @@ target_position = Vector3(0, 6, 0)
 wait_time = 0.0
 move_time = 1.5
 
-[node name="Platform8" parent="." instance=ExtResource("5_3tdrx")]
+[node name="AreaEnterPlatform" type="AnimatableBody3D" parent="." node_paths=PackedStringArray("collision_shape_3d", "mesh_instance_3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 10, -149)
+script = ExtResource("6_r5l0s")
+size = Vector3(5, 0.5, 5)
 target_position = Vector3(0, 6, 0)
-wait_time = 2.0
-move_time = 1.0
+wait_time = 4.0
+move_time = 1.5
+type = 1
 trigger_type = 2
+collision_shape_3d = NodePath("CollisionShape3D")
+mesh_instance_3d = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaEnterPlatform"]
+shape = SubResource("BoxShape3D_3tdrx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AreaEnterPlatform"]
+mesh = SubResource("BoxMesh_r5l0s")
+
+[node name="Area3D" type="Area3D" parent="AreaEnterPlatform"]
+collision_mask = 48
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaEnterPlatform/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_mokhy")
 
 [node name="Platform9" parent="." instance=ExtResource("5_3tdrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 16, -157)
@@ -152,3 +181,5 @@ size = Vector3(10, 0.5, 10)
 target_position = Vector3(-80, 0, 0)
 wait_time = 0.0
 move_time = 9.0
+
+[connection signal="body_entered" from="AreaEnterPlatform/Area3D" to="AreaEnterPlatform" method="_on_area_3d_body_entered"]

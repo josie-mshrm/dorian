@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbgvfo8q6bnq"]
+
+[ext_resource type="Script" uid="uid://b0cvii5ex2ek7" path="res://util/testing/music_proto.gd" id="1_6atxx"]
+[ext_resource type="Script" uid="uid://dviivef2kocft" path="res://util/testing/music_proto_ui.gd" id="1_winvd"]
+
+[node name="Music Proto" type="Node3D"]
+script = ExtResource("1_6atxx")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_winvd")
+
+[node name="RectList" type="HBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -460.0
+offset_top = 60.0
+offset_right = -60.0
+offset_bottom = 160.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="UI/RectList"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.526108, 0.711955, 0.623868, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UI/RectList"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.112338, 0.188706, 0.153736, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="UI/RectList"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.152941, 0.247059, 0.203922, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="UI/RectList"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.152941, 0.247059, 0.203922, 1)

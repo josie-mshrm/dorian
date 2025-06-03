@@ -7,7 +7,6 @@ signal VariableChanged
 enum PlatformType {STATIC, MOVING, DISAPPEARING, FALLING, ROTATING}
 enum TriggerType {AUTO, BUTTON, CONTACT, SWITCH}
 
-
 @export var size := Vector3.ONE:
 	set(new_size):
 		size = new_size
@@ -42,12 +41,12 @@ func _ready() -> void:
 		init_position = self.global_position
 		target_position = init_position + target_position
 	
-	update_shape()
-	
 	if not Engine.is_editor_hint():
 		match trigger_type:
 			TriggerType.AUTO:
 				move_platform()
+	
+	VariableChanged.emit()
 
 func move_platform():
 	tween = create_tween()
@@ -90,16 +89,3 @@ func make_target_indicator():
 	indicator_mesh.mesh = indicator_box_mesh
 	add_child(indicator_mesh)
 	update_shape()
-
-
-func _enter_tree() -> void:
-	if Engine.is_editor_hint():
-		if not indicator_mesh:
-			make_target_indicator()
-
-
-func _exit_tree() -> void:
-	if indicator_mesh:
-		indicator_mesh.queue_free()
-	if VariableChanged.is_connected(on_stats_changed):
-		VariableChanged.disconnect(on_stats_changed)

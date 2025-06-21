@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctbfurgu1qye5"]
+
+[ext_resource type="Script" uid="uid://dtxyxvbbpy7n7" path="res://world/world objects/platforms/quick platform.gd" id="1_q54er"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_427dw"]
+size = Vector3(14, 8, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3h4d0"]
+size = Vector3(14, 8, 16)
+
+[node name="quick platform" type="AnimatableBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_q54er")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_427dw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3h4d0")

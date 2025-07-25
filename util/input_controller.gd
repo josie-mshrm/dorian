@@ -3,11 +3,12 @@ extends Node
 signal player_input(action: Global.Action, event: InputEvent)
 signal player_release(action: Global.Action, event: InputEvent)
 
-@export var mouse_camera := false
+@export var mouse_camera := true
 
 var player_movement := Vector3.ZERO
 var camera_movement := Vector3.ZERO
 var mouse_camera_movement := Vector2.ZERO
+var mouse_sensitivity := 0.0015
 
 var layer := 0
 
@@ -23,8 +24,13 @@ func _physics_process(_delta: float) -> void:
 	player_movement.x = Input.get_axis(&"left", &"right")
 	player_movement.z = Input.get_axis(&"up", &"down")
 	
-	camera_movement.x = Input.get_axis("cam - right", "cam - left")
-	camera_movement.z = Input.get_axis("cam - down", "cam - up")
+	if mouse_camera:
+		camera_movement.x = mouse_camera_movement.x * -1
+		camera_movement.z = mouse_camera_movement.y * -1
+		camera_movement *= mouse_sensitivity
+	else:
+		camera_movement.x = Input.get_axis("cam - right", "cam - left")
+		camera_movement.z = Input.get_axis("cam - down", "cam - up")
 	
 	if Input.is_action_pressed(&"layer_toggle"):
 		layer = 1
@@ -43,10 +49,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		match layer:
 			0 : player_input.emit(Global.Action.DASH, event)
 			1 : player_input.emit(Global.Action.SLIDE, event)
+
 	
 	if mouse_camera:
 		if event is InputEventMouseMotion:
-			mouse_camera_movement = event.relative
+			mouse_camera_movement = event.screen_relative
 
 
 func on_player_input(_action: Global.Action, _event: InputEvent):

@@ -17,9 +17,9 @@ config/icon="res://addons/icon.svg"
 
 [autoload]
 
+InputController="*res://util/input_controller.tscn"
 Global="*res://util/global.tscn"
 SignalBus="*res://util/signal_bus.tscn"
-InputController="*res://util/input_controller.tscn"
 
 [debug]
 
